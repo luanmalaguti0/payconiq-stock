@@ -1,9 +1,7 @@
 package com.luan.payconiq.stock.repository;
 
-import com.luan.payconiq.stock.constants.StockConstants;
-import com.luan.payconiq.stock.entity.StockEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import static com.luan.payconiq.stock.constants.StockConstants.STOCK_INITIAL_ID_VALUE;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +9,13 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.luan.payconiq.stock.entity.StockEntity;
+
 @Repository
-public class InMemoryStockRepository implements StockRepository{
+public class InMemoryStockRepository implements StockRepository {
 
     private Map<Long, StockEntity> stocks;
     private AtomicLong atomicLong;
@@ -20,7 +23,7 @@ public class InMemoryStockRepository implements StockRepository{
     @Autowired
     public InMemoryStockRepository() {
         this.stocks = new HashMap<>();
-        this.atomicLong = new AtomicLong(StockConstants.STOCK_INITIAL_ID_VALUE);
+        this.atomicLong = new AtomicLong(STOCK_INITIAL_ID_VALUE);
     }
 
     @Override
@@ -37,7 +40,7 @@ public class InMemoryStockRepository implements StockRepository{
 
     @Override
     public Optional<StockEntity> updateStock(Long id, StockEntity stockEntity) {
-        if(getStock(id).isPresent()){
+        if (getStock(id).isPresent()) {
             stocks.put(id, stockEntity);
             return Optional.of(stocks.get(id));
         }
