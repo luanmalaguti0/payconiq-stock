@@ -1,8 +1,17 @@
 package com.luan.payconiq.stock.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.luan.payconiq.stock.model.StockDto;
-import com.luan.payconiq.stock.service.StockService;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+
+import java.math.BigDecimal;
+import java.util.Collections;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,17 +21,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.math.BigDecimal;
-import java.util.Collections;
-
-import static org.mockito.Mockito.verify;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.luan.payconiq.stock.model.StockDto;
+import com.luan.payconiq.stock.service.StockService;
+import com.luan.payconiq.stock.service.TimestampService;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = StockController.class)
@@ -35,6 +37,9 @@ class StockControllerTest {
 
     @MockBean
     private StockService stockService;
+
+    @MockBean
+    private TimestampService timestampService;
 
     @BeforeEach
     void setMockMvc() {
@@ -87,7 +92,7 @@ class StockControllerTest {
     }
 
     @Test
-    void createStockTest() throws Exception{
+    void createStockTest() throws Exception {
         Long id = 1L;
         BigDecimal currentPrice = new BigDecimal(350.99);
         String name = "Guitar";

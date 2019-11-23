@@ -1,13 +1,13 @@
 package com.luan.payconiq.stock.service;
 
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class TimestampService {
 
-    public LocalDateTime now(){
+    public LocalDateTime now() {
         return LocalDateTime.now();
     }
 }
