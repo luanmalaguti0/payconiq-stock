@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.luan.payconiq.stock.entity.StockEntity;
+import com.luan.payconiq.stock.handler.Loggable;
 
+@Loggable
 @Repository
 public class InMemoryStockRepository implements StockRepository {
     private static final int STOCK_INITIAL_ID_VALUE = 1;

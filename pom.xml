@@ -18,6 +18,7 @@
         <junit-jupiter.version>5.3.1</junit-jupiter.version>
         <lombok.version>1.18.10</lombok.version>
         <assertj-core.version>3.14.0</assertj-core.version>
+        <aspectjweaver.version>1.9.4</aspectjweaver.version>
     </properties>
 
     <dependencies>
@@ -38,6 +39,13 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- AspectJ -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectjweaver.version}</version>
         </dependency>
 
         <!-- JUnit -->
