@@ -1,19 +1,20 @@
 package com.luan.payconiq.stock.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.luan.payconiq.stock.entity.StockEntity;
 import com.luan.payconiq.stock.exception.StockNotFoundException;
+import com.luan.payconiq.stock.handler.Loggable;
 import com.luan.payconiq.stock.mapper.StockMapper;
 import com.luan.payconiq.stock.model.StockDto;
 import com.luan.payconiq.stock.repository.StockRepository;
 
 import lombok.AllArgsConstructor;
 
+@Loggable
 @AllArgsConstructor
 @Service
 public class StockService {
@@ -38,9 +39,9 @@ public class StockService {
     public StockDto updateStock(Long id, StockDto stockDto) {
         StockEntity stockEntity = stockMapper.toStockEntity(stockDto, timestampService.now());
         stockEntity.setId(id);
-        Optional<StockEntity> stockEntityUpdated = stockRepository.updateStock(id, stockEntity);
-        return stockMapper.toStockDto(stockEntityUpdated
-                .orElseThrow(() -> new StockNotFoundException(id)));
+        StockEntity stockEntityUpdated = stockRepository.updateStock(id, stockEntity)
+                .orElseThrow(() -> new StockNotFoundException(id));
+        return stockMapper.toStockDto(stockEntityUpdated);
     }
 
     public StockDto createStock(StockDto stockDto) {
