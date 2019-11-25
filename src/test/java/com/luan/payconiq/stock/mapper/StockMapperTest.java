@@ -1,15 +1,17 @@
 package com.luan.payconiq.stock.mapper;
 
-import com.luan.payconiq.stock.entity.StockEntity;
-import com.luan.payconiq.stock.model.StockDto;
-import org.junit.jupiter.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import com.luan.payconiq.stock.entity.StockEntity;
+import com.luan.payconiq.stock.model.StockDto;
 
 @ExtendWith(SpringExtension.class)
 class StockMapperTest {
@@ -18,7 +20,7 @@ class StockMapperTest {
     private StockMapper subject;
 
     @Test
-    void toStockDtoTest(){
+    void toStockDtoTest() {
         Long id = 1L;
         String name = "name";
         BigDecimal currentPrice = new BigDecimal(450.99);
@@ -40,11 +42,11 @@ class StockMapperTest {
 
         StockDto result = subject.toStockDto(stockEntity);
 
-        Assertions.assertEquals(expected, result);
+        assertThat(expected).isEqualToComparingFieldByField(result);
     }
 
     @Test
-    void toStockEntityTest(){
+    void toStockEntityTest() {
         Long id = 1L;
         String name = "name";
         BigDecimal currentPrice = new BigDecimal(450.99);
@@ -65,7 +67,7 @@ class StockMapperTest {
 
         StockEntity result = subject.toStockEntity(stockDto, lastUpdated);
 
-        Assertions.assertEquals(expected, result);
+        assertThat(expected).isEqualToComparingFieldByField(result);
     }
 
 }

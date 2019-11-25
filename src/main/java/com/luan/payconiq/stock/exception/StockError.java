@@ -18,7 +18,7 @@ public class StockError implements Serializable {
 
     private static final long serialVersionUID = 8716347936651958223L;
 
-    private int code;
+    private Integer code;
     private String message;
     private String cause;
     private LocalDateTime timestamp;

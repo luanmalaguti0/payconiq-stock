@@ -1,7 +1,5 @@
 package com.luan.payconiq.stock.model;
 
-import static com.luan.payconiq.stock.constants.StockConstants.STOCK_MIN_PRICE_VALUE;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -16,11 +14,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Data
 public class StockDto {
+
+    private static final int STOCK_MIN_PRICE_VALUE = 0;
 
     private Long id;
 
