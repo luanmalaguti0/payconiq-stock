@@ -1,0 +1,9 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: warn
+    com.luan.payconiq.stock: info
+  pattern:
+    console: "%green(%d{yyyyMMdd'T'HHmmss}) %magenta([%thread]) %highlight(%-5level) %cyan(%logger{15}) %msg%n"
