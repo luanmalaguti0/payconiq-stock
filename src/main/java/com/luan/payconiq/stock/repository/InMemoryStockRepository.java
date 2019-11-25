@@ -1,7 +1,5 @@
 package com.luan.payconiq.stock.repository;
 
-import static com.luan.payconiq.stock.constants.StockConstants.STOCK_INITIAL_ID_VALUE;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +14,7 @@ import com.luan.payconiq.stock.entity.StockEntity;
 
 @Repository
 public class InMemoryStockRepository implements StockRepository {
+    private static final int STOCK_INITIAL_ID_VALUE = 1;
 
     private Map<Long, StockEntity> stocks;
     private AtomicLong atomicLong;

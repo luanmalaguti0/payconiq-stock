@@ -1,6 +1,12 @@
 package com.luan.payconiq.stock.repository;
 
-import com.luan.payconiq.stock.entity.StockEntity;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,12 +14,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import com.luan.payconiq.stock.entity.StockEntity;
 
-import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 class InMemoryStockRepositoryTest {
 
@@ -103,6 +105,6 @@ class InMemoryStockRepositoryTest {
                 .currentPrice(currentPrice)
                 .build());
 
-        Assertions.assertEquals(expected, result);
+        assertThat(expected).isEqualToComparingFieldByField(result);
     }
 }
