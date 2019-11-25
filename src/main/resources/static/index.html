@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="stockApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="stock.js"></script>
+    <link rel="stylesheet" href="stock.css">
+</head>
+<body>
+<h2>Payconiq Stocks</h2>
+<div ng-controller="StockController as stockList" data-ng-init="stockList.showStocks()">
+    <span>Total of {{stockList.stocks.length}} created</span>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Current price</th>
+            <th>Last updated</th>
+        </tr>
+        <tr ng-repeat="stock in stockList.stocks">
+            <td>{{stock.id}}</td>
+            <td>{{stock.name}}</td>
+            <td>{{stock.currentPrice}}</td>
+            <td>{{stock.lastUpdated}}</td>
+        </tr>
+    </table>
+    <br/>
+    <form ng-submit="stockList.showStocks()">
+        <input class="btn-primary" type="submit" value="Update list">
+    </form>
+</div>
+</body>
+</html>
